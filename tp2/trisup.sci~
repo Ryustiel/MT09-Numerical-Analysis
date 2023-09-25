@@ -15,12 +15,12 @@ function [U,e] = trisup(A, b)
         if abs(A(k,k))<tol then
             error("La matrice n''est pas inversible.");
         end
-        for i=k+1:sizeM
-            c=A(i,k)/A(k,k);
-            b(i)=b(i)-c*b(k);
-            A(i,k)=0;
-            for j=k+1:sizeM
-                A(i,j)=A(i,j)-c*A(k,j);
+        for i = k+1 : sizeM
+            c = A(i,k) / A(k,k);
+            b(i) = b(i) - c * b(k);
+            A(i,k) = 0;
+            for j = k+1 : sizeM
+                A(i,j) = A(i,j) - c * A(k,j);
             end
         end
     end

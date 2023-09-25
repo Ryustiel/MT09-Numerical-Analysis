@@ -2,6 +2,9 @@
 exec('solinf.sci')
 exec('solsup.sci')
 exec('trisup.sci')
+exec('LU.sci')
+exec('resol.sci')
+exec('inverse.sci')
 
 // debugging
 exec('debug.sci')
