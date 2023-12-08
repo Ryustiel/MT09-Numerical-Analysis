@@ -1,0 +1,59 @@
+function [i] = place(T,t) 
+    n = size(T,"c")
+    if t<T(1)|t>T(n)  then
+        error("t est hors de l''intervalle");
+    end
+    imin = 1
+    imax = n
+    while (imax-imin)>1 
+        mil = floor((imax+imin)/2)
+        if t>=T(mil)
+            imin = mil
+        else
+            imax = mil
+        end
+    end
+    i = imin
+endfunction
+
+function trace(N,T,cc) 
+    s = size(T,"c")
+    [m,n] = size(cc)
+    if(m <> s-1 | n <> 4) then
+        error("Taille non correcte");
+    end
+    v = zeros(1,N)
+    TN = linspace(T(1,1),T(1,s),N)
+    for j = 1 : N
+        t = TN(1,j)
+        i = place(T,t) 
+        v(j) = cc(i,1)+cc(i,2)*t+cc(i,3)*(t^2)
+    end
+    plot(TN,v)
+endfunction
+
+function [z]=calcg(t,T,cc) 
+    [m,n] = size(cc)
+    s=size(T,"r")
+    if(m <> s-1 | n <> 4) then
+        error("Taille non correcte");
+    end
+    i = place(T,t) 
+    z = cc(i,1) + cc(i,2) * (t - T(i)) + cc(i,3)*((t - T(i)) ^ 2) + cc(i,4) * ((t - T(i)) ^ 2) * (t - T(i+1));
+endfunction
+    
+function [x]=rich(a,b,c,u)
+    e(1) = -(c(1) / b(1));
+    f(1) = (u(1) / b(1));
+    s = size(u,"r");
+    x = zeros(s,1);
+    for i = 2:s - 1
+        e(i) = -(c(i) / (a(i) * e(i - 1) + b(i)));
+        f(i)=(u(i) - a(i) * f(i-1)) / (a(i) * e(i-1) + b(i));
+    end
+    f(s)=(u(s) - a(s) * f(s-1)) / (a(s) * e(s-1) + b(s));
+    x(s) = f(s);
+    for i = s - 1:-1:1
+        x(i) = e(i) * x(i+1) + f(i);
+    end
+endfunction
