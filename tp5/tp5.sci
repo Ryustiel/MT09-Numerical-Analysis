@@ -68,7 +68,7 @@ endfunction
 
 f = diffdiv([10; 12; 14; 16], [0; 1; 2; 3])
 
-[p, pprim] = horn(f, t, 2)
+//[p, pprim] = horn(f, t, 2)
 
 a = [1; 3; 5; -1]
 t = [0; 0; 1]
@@ -79,7 +79,7 @@ y = [1; 5; 3; 7; -1]
 t = [1; 3; 4.5; 5; 6]
 res = interpol(y, t, [3; 4])
 
-// courbe(y, t, 100, 4)
+//courbe(y, t, 100, 4)
 
 
 

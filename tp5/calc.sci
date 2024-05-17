@@ -150,16 +150,16 @@ function trace_cheb(n, Tmax, Npt)
     plot(x, y, 'g')
 endfunction
 
-t = [1; 3; 4.5; 5; 6]
-y = [1; 5; 3; 7; -1]
+//t = [1; 3; 4.5; 5; 6]
+//y = [1; 5; 3; 7; -1]
 
-t = linspace(0, 10, 10)
+t = linspace(0, 10, 11)
 t = t / 10
-y = [0; 0; 0; 0; 0; 0; 10; 0; 0; 0]
+y = [0; 0; 0; 0; 0; 0; 10; 0; 0; 0; 0]
 disp(t', y)
 //trace_interp_spline(t', y, 100)
 
 //trace_lin(5, 5, 1000)
 
-//trace_cheb(5, 10, 1000)
+trace_cheb(5, 10, 1000)
 
